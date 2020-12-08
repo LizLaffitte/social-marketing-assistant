@@ -63,8 +63,8 @@ test:
   <<: *default
   database: social_marketing_assistant_test
   host: 127.0.0.1
-  username: 'postgres'
-  password: 'elijah'
+  username: <%= ENV['PQSQL'] %>
+  password: <%= ENV['PQSQL_PW'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
