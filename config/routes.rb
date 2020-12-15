@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get '/', to: "sessions#index"
+  root 'sessions#index'
+  get '/*path' => 'sessions#index'
 end
