@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux'
+import {signup} from '../actions/userActions'
 
 function Signup() {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 const [email, setEmail] = useState("")
-
+const dispatch = useDispatch()
+const handleOnSubmit = (e) => {
+    e.preventDefault()
+    console.log("Test")
+    dispatch({type: 'signup', credentials: {username, password, email}})
+}
 return(
-    <form>
+    <form onSubmit={handleOnSubmit}>
         <h1>Sign Up</h1>
         <label>Username: </label><br />
         <input type="text" value={username} onChange={e => setUsername(e.target.value)} name="username" /><br /><br />
