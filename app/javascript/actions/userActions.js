@@ -1,6 +1,13 @@
+export const addUser = user => {
+    return {
+        type: "ADD_USER",
+        user
+    }
+}
 export const signup = credentials => {
+    console.log(credentials)
     return dispatch => {
-        return fetch('/signup', {
+        return fetch('http://localhost:3000/signup', {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -13,7 +20,7 @@ export const signup = credentials => {
             if(userData.error){
                 console.log(userData.errors)
             } else {
-               console.log("You did it")
+                dispatch(addUser(userData.data))
             }
             
         })
