@@ -1,4 +1,11 @@
-import React from "react";
+import React, {Component} from "react";
 import Routes from "../routes/Index";
 
-export default props => <>{Routes}</>;
+class App extends Component {
+    render() {
+        return(
+            <Routes />
+        )
+    }
+}
+export default App
