@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import {useDispatch} from 'react-redux'
 import {signup} from '../actions/userActions'
 
-function Signup() {
+function Signup(props) {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 const [email, setEmail] = useState("")
-const dispatch = useDispatch()
+const signup = props.signup
 const handleOnSubmit = (e) => {
     e.preventDefault()
     console.log("Test")
-    dispatch({type: 'signup', credentials: {username, password, email}})
+    const credentials = {username, password, email}
+    signup(credentials)
 }
 return(
     <form onSubmit={handleOnSubmit}>
