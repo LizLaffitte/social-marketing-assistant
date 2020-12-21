@@ -4,24 +4,27 @@ export const addUser = user => {
         user
     }
 }
-export const signup = credentials => {
+export const signup = (credentials, token) => {
     console.log(credentials)
+    console.log(JSON.stringify(credentials))
     return dispatch => {
         return fetch('http://localhost:3000/signup', {
             credentials: 'include',
             method: "POST",
             headers: {
+                "X-CSRF-Token": token,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(credentials)
           })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(userData => {
-            if(userData.error){
-                console.log(userData.errors)
-            } else {
-                dispatch(addUser(userData.data))
-            }
+            console.log(userData)
+            // if(userData.error){
+            //     console.log(userData.errors)
+            // } else {
+            //     dispatch(addUser(userData.data))
+            // }
             
         })
         .catch(console.log())
