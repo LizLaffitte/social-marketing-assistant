@@ -8,10 +8,9 @@ const [email, setEmail] = useState("")
 const signup = props.signup
 const handleOnSubmit = (e) => {
     e.preventDefault()
-    console.log("Test")
-    const credentials = {username, password, email}
-    signup(credentials)
+    signup({username, email, password}, token)
 }
+const token = document.querySelector('meta[name="csrf-token"]').content;
 return(
     
     <form onSubmit={handleOnSubmit}>
