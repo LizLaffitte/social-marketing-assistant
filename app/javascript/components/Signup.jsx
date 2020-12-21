@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch} from 'react-redux'
-import {signup} from '../actions/userActions'
+
 
 function Signup(props) {
 const [username, setUsername] = useState("")
@@ -14,6 +13,7 @@ const handleOnSubmit = (e) => {
     signup(credentials)
 }
 return(
+    
     <form onSubmit={handleOnSubmit}>
         <h1>Sign Up</h1>
         <label>Username: </label><br />
