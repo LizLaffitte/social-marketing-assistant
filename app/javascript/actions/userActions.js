@@ -12,6 +12,12 @@ export const setCurrentUser = user => {
     }
 }
 
+export const clearCurrentUser = () => {
+    return {
+        type: "CLEAR_CURRENT_USER"
+    }
+}
+
 // Async
 export const signup = (credentials, token) => {
     return dispatch => {
@@ -37,12 +43,13 @@ export const signup = (credentials, token) => {
     }
 }
 
-export const login = credentials => {
+export const login = (credentials, token) => {
     return dispatch => {
         return fetch('http://localhost:3000/login', {
             credentials: 'include',
             method: "POST",
             headers: {
+                "X-CSRF-Token": token,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(credentials)
@@ -53,7 +60,7 @@ export const login = credentials => {
             if(userData.errors){
                 console.log(userData.errors)
             } else {
-                dispatch(setCurrentUser(userData.data))
+                dispatch(setCurrentUser(userData.data.attributes))
             }
             
         })
