@@ -4,6 +4,7 @@ import Login from '../components/Login'
 import Home from '../components/Home'
 import Signup from '../components/Signup'
 import {signup} from '../actions/userActions'
+import {login} from '../actions/userActions'
 import {connect} from 'react-redux'
 
 class Routes extends Component {
@@ -14,7 +15,7 @@ class Routes extends Component {
         <Switch>
             <Route path="/" exact component={Home}/>
           <Route path="/signup" exact render={props => <Signup {...props} signup={this.props.signup} />} />
-          <Route path='/login' exact component={Login} />
+          <Route path='/login' exact render={props => <Login {...props} login={this.props.login} />} />
         </Switch>
       </Router>
       </>
@@ -22,4 +23,4 @@ class Routes extends Component {
   }
 }
 
-export default connect(null, {signup})(Routes)
+export default connect(null, {signup, login})(Routes)
