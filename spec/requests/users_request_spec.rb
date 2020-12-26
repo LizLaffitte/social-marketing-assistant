@@ -11,8 +11,8 @@ RSpec.describe "Users", type: :request do
         }
       }
       post '/signup', :params => user_params.to_json, :headers => { "Content-Type": "application/json" }
-        json = JSON.parse(response.body)
-        expect(response).to have_http_status(201)
+        json = JSON.parse(response.body)["data"]["attributes"]
+        expect(json).to include("email")
     end
 
   it "renders an error with invalid attributes" do
