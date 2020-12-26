@@ -9,6 +9,7 @@ const signup = props.signup
 const handleOnSubmit = (e) => {
     e.preventDefault()
     signup({username, email, password}, token)
+    props.history.push('/')
 }
 const token = document.querySelector('meta[name="csrf-token"]').content;
 return(
