@@ -4,9 +4,16 @@ export const addUser = user => {
         user
     }
 }
+
+export const setCurrentUser = user => {
+    return {
+        type: "SET_CURRENT_USER",
+        user
+    }
+}
+
+// Async
 export const signup = (credentials, token) => {
-    console.log(credentials)
-    console.log(JSON.stringify(credentials))
     return dispatch => {
         return fetch('http://localhost:3000/signup', {
             credentials: 'include',
@@ -17,14 +24,37 @@ export const signup = (credentials, token) => {
             },
             body: JSON.stringify(credentials)
           })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(userData => {
-            console.log(userData)
-            // if(userData.error){
-            //     console.log(userData.errors)
-            // } else {
-            //     dispatch(addUser(userData.data))
-            // }
+            if(userData.error){
+                console.log(userData.errors)
+            } else {
+                dispatch(addUser(userData.data.attributes))
+            }
+            
+        })
+        .catch(console.log())
+    }
+}
+
+export const login = credentials => {
+    return dispatch => {
+        return fetch('http://localhost:3000/login', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+          })
+          
+        .then(response => response.json())
+        .then(userData => {
+            if(userData.errors){
+                console.log(userData.errors)
+            } else {
+                dispatch(setCurrentUser(userData.data))
+            }
             
         })
         .catch(console.log())
