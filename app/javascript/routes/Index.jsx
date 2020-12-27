@@ -1,26 +1,38 @@
 import React, {Component} from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from '../components/Login'
 import Home from '../components/Home'
 import Signup from '../components/Signup'
-import {signup} from '../actions/userActions'
-import {login} from '../actions/userActions'
+import {signup, login} from '../actions/userActions'
 import {connect} from 'react-redux'
+import { withCookies, Cookies } from 'react-cookie';
+
+
 
 class Routes extends Component {
+  loggedIn = () =>{
+    return this.props.currentUser
+}
+
   render(){
+    const {login, signup} = this.props
     return (
       <>
       <Router>
         <Switch>
-            <Route path="/" exact component={Home}/>
-          <Route path="/signup" exact render={props => <Signup {...props} signup={this.props.signup} />} />
-          <Route path='/login' exact render={props => <Login {...props} login={this.props.login} />} />
+          <Route path="/" exact component={Home}/>
+          <Route exact path='/login' >
+            {this.loggedIn() ? <Redirect to="/" /> : <Login login={login} cookies={cookies}  />}
+          </Route>
+          <Route exact path='/signup' >
+            {this.loggedIn() ? <Redirect to="/" /> : <Signup signup={signup}  />}
+          </Route>
+         
         </Switch>
       </Router>
       </>
     )
   }
 }
-
-export default connect(null, {signup, login})(Routes)
+const mapStateToProps = ({currentUser, ownProps}) => ({currentUser, ownProps})
+export default withCookies(connect(mapStateToProps, {signup, login})(Routes))
