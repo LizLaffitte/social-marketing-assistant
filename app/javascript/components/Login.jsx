@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState} from "react"
+import { useHistory } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 function Login(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const history = useHistory()
+    const [cookies, setCookie] = useCookies(['user'])
     const login = props.login
+    
     const handleOnSubmit = (e) => {
         e.preventDefault()
+        setCookie('user', {username}, {path: '/'})
         login({username, password}, token)
-        props.history.push('/')
+       history.push('/')
     }
     const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
