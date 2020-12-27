@@ -35,7 +35,8 @@ export const signup = (credentials, token) => {
             if(userData.error){
                 console.log(userData.errors)
             } else {
-                dispatch(addUser(userData.data.attributes))
+                dispatch(addUser(userData.data))
+                dispatch(setCurrentUser(userData.data))
             }
             
         })
@@ -60,7 +61,7 @@ export const login = (credentials, token) => {
             if(userData.errors){
                 console.log(userData.errors)
             } else {
-                dispatch(setCurrentUser(userData.data.attributes))
+                dispatch(setCurrentUser(userData.data))
             }
             
         })
