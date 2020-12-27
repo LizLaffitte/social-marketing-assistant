@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-
+import { useHistory } from 'react-router-dom'
 
 function Signup(props) {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 const [email, setEmail] = useState("")
 const signup = props.signup
+const history = useHistory()
 const handleOnSubmit = (e) => {
     e.preventDefault()
     signup({username, email, password}, token)
-    props.history.push('/')
+    history.push('/')
 }
 const token = document.querySelector('meta[name="csrf-token"]').content;
 return(
