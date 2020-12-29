@@ -22,7 +22,7 @@ class Routes extends Component {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route exact path='/login' >
-            {this.loggedIn() ? <Redirect to="/" /> : <Login login={login} cookies={cookies}  />}
+            {this.loggedIn() ? <Redirect to="/" /> : <Login login={login}  />}
           </Route>
           <Route exact path='/signup' >
             {this.loggedIn() ? <Redirect to="/" /> : <Signup signup={signup}  />}
