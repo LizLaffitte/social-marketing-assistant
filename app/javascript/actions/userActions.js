@@ -19,13 +19,14 @@ export const clearCurrentUser = () => {
 }
 
 // Async
-export const signup = (credentials, token) => {
+export const signup = (credentials) => {
+// export const signup = (credentials, token) => {
     return dispatch => {
         return fetch('http://localhost:3000/signup', {
             credentials: 'include',
             method: "POST",
             headers: {
-                "X-CSRF-Token": token,
+                // "X-CSRF-Token": token,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(credentials)
@@ -44,13 +45,14 @@ export const signup = (credentials, token) => {
     }
 }
 
-export const login = (credentials, token) => {
+export const login = (credentials) => {
+// export const login = (credentials, token) => {
     return dispatch => {
         return fetch('http://localhost:3000/login', {
             credentials: 'include',
             method: "POST",
             headers: {
-                "X-CSRF-Token": token,
+                // "X-CSRF-Token": token,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(credentials)
@@ -60,8 +62,56 @@ export const login = (credentials, token) => {
         .then(userData => {
             if(userData.errors){
                 console.log(userData.errors)
+                //elsif user doesn't exist, redirect to signup form
             } else {
                 dispatch(setCurrentUser(userData.data))
+            }
+            
+        })
+        .catch(console.log())
+    }
+}
+
+export const getCurrentUser = () => {
+    return dispatch => {
+        return fetch('http://localhost:3000/users/:id', { 
+            credentials: "include",
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+        .then(response => response.json())
+        .then(userData => {
+            if(userData.errors){
+                console.log(userData.errors)
+            } else {
+                dispatch(setCurrentUser(userData.data))
+            }
+            
+        })
+        .catch(console.log("test"))
+    }
+}
+
+// export const logOut = (token) => {
+export const logOut = () => {
+    return dispatch => {
+        dispatch(clearCurrentUser())
+        return fetch('http://localhost:3000/logout', {
+        credentials: 'include',
+        method: 'DElETE',
+        headers: {
+            // "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        }
+        })
+        .then(response => response.text())
+        .then(userData => {
+            if(userData.errors){
+                console.log(userData.errors)
+            } else {
+                console.log(userData.notice)
             }
             
         })
