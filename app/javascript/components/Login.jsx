@@ -1,6 +1,6 @@
 import React, { useState} from "react"
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useCookies } from 'react-cookie'
 import {login} from '../actions/userActions'
 
@@ -10,14 +10,16 @@ function Login() {
     const history = useHistory()
     const [cookies, setCookie] = useCookies(['user'])
     const dispatch = useDispatch()
-    
+    const loggedInUser = useSelector(state => state.currentUser)
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        setCookie('user', {username}, {path: '/'})
-        dispatch(login({username, password}, token))
+        
+        // dispatch(login({username, password}, token))
+        dispatch(login({username, password}))
+        setCookie('user', loggedInUser.to_s, {path: '/'})
        history.push('/')
     }
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    // const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
         <form onSubmit={handleOnSubmit}>
             <h1>Log in</h1>
