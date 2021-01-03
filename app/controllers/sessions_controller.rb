@@ -10,4 +10,11 @@ class SessionsController < ApplicationController
             render json: {errors: "Invalid credentials"}
         end
     end
+
+    def destroy
+        session.clear
+        render json: {notice: "Successfully logged out"}
+    end
+
+    
 end
