@@ -13,13 +13,10 @@ function Login() {
     const loggedInUser = useSelector(state => state.currentUser)
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        
-        // dispatch(login({username, password}, token))
-        dispatch(login({username, password}))
-        setCookie('user', loggedInUser.to_s, {path: '/'})
-       history.push('/')
+        dispatch(login({username, password}, token))       
     }
-    // const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
         <form onSubmit={handleOnSubmit}>
             <h1>Log in</h1>
