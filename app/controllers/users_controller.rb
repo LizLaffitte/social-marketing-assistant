@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     wrap_parameters :user, include: [:username, :password, :email]
+    before_action :find_user, only: [:show]
 
     def create
         user = User.new(user_params)
@@ -12,11 +13,20 @@ class UsersController < ApplicationController
 
     end
 
+    def show
+        puts @user
+        render json: UserSerializer.new(@user)
+    end
     
 
     private
 
     def user_params
         params.require(:user).permit(:username, :email, :password)
+    end
+
+    def find_user
+        @user = User.find_by_id(params[:id])
+        puts @user
     end
 end
