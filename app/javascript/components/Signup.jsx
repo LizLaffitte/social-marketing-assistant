@@ -11,11 +11,10 @@ const dispatch = useDispatch()
 const history = useHistory()
 const handleOnSubmit = (e) => {
     e.preventDefault()
-    dispatch(signup({username, email, password}))
-    // dispatch(signup({username, email, password}, token))
+    dispatch(signup({username, email, password}, token))
     history.push('/')
 }
-// const token = document.querySelector('meta[name="csrf-token"]').content;
+const token = document.querySelector('meta[name="csrf-token"]').content;
 return(
     
     <form onSubmit={handleOnSubmit}>
