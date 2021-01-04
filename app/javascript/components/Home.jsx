@@ -10,12 +10,11 @@ function Home(){
     const dispatch = useDispatch()
     const history = useHistory()
     const [cookies, removeCookie] = useCookies(['user'])
-    // const token = document.querySelector('meta[name="csrf-token"]').content;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const logout = (e) => {
         e.preventDefault()
         removeCookie('user')
-        // dispatch(logOut(token))
-        dispatch(logOut())
+        dispatch(logOut(token))
     }
     return(
         <div className="main">
