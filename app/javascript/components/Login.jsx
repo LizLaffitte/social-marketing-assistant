@@ -1,14 +1,12 @@
 import React, { useState} from "react"
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useCookies } from 'react-cookie'
 import {login} from '../actions/userActions'
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const history = useHistory()
-    const [cookies, setCookie] = useCookies(['user'])
     const dispatch = useDispatch()
     const loggedInUser = useSelector(state => state.currentUser)
     const handleOnSubmit = (e) => {
