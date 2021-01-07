@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import Login from '../components/Login'
 import Home from '../components/Home'
 import Signup from '../components/Signup'
+import PostForm from '../components/PostForm'
 import {useSelector, useDispatch} from 'react-redux'
 import { useCookies } from 'react-cookie';
 import {getCurrentUser } from "../actions/userActions";
@@ -34,6 +35,7 @@ function Routes() {
           <Route exact path='/signup' >
             {loggedInUser ? <Redirect to="/" /> : <Signup  />}
           </Route>
+          <Route exact path='/posts/new'><PostForm /></Route>
          
         </Switch>
       </Router>
