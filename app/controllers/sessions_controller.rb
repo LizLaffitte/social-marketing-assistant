@@ -16,5 +16,7 @@ class SessionsController < ApplicationController
         render json: {notice: "Successfully logged out"}
     end
 
+    def index
+    end
     
 end
