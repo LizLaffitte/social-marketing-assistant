@@ -10,7 +10,7 @@ import { CookiesProvider } from 'react-cookie';
 
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)))
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('turbolinks:load', () => {
   render(
     <CookiesProvider>
       <Provider store={store}>
