@@ -9,7 +9,7 @@ import rootReducer from '../reducers/rootReducer'
 import { CookiesProvider } from 'react-cookie';
 
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 25 })))
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)))
 document.addEventListener("DOMContentLoaded", () => {
   render(
     <CookiesProvider>
