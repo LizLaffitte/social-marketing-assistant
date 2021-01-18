@@ -117,3 +117,29 @@ export const logOut = (token) => {
         .catch(console.log())
     }
 }
+
+export const twtLogin = (token) => {
+    return dispatch => {
+        return fetch('https://api.twitter.com/oauth/request_token', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+                "X-CSRF-Token": token,
+              "Content-Type": "application/json"
+            }
+          })
+          
+        .then(response => response.json())
+        .then(userData => {
+            if(userData.errors){
+                console.log(userData.errors)
+                
+            } else {
+                console.log(userData)
+                // dispatch(setCurrentUser(userData.data))
+            }
+            
+        })
+        .catch(console.log())
+    }
+}

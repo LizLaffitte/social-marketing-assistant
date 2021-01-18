@@ -1,7 +1,7 @@
 import React, { useState} from "react"
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {login} from '../actions/userActions'
+import {login, twtLogin} from '../actions/userActions'
 
 function Login() {
     const [username, setUsername] = useState("")
@@ -16,6 +16,7 @@ function Login() {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
+        <>
         <form onSubmit={handleOnSubmit}>
             <h1>Log in</h1>
             <label>Username: </label><br />
@@ -25,6 +26,8 @@ function Login() {
             <br /><br />
             <input type="submit" value="Log in"  />
         </form>
+        <a href="#" onClick={dispatch(twtLogin(), token)}>Login with Twitter</a>
+        </>
     )
 }
 
