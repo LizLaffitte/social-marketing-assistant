@@ -124,8 +124,9 @@ export const twtLogin = (token) => {
             credentials: 'include',
             method: "POST",
             headers: {
-                "X-CSRF-Token": token,
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "oauth_callback": process.env.OATH_CB,
+              "oauth_consumer_key": process.env.OATH_KEY
             }
           })
           

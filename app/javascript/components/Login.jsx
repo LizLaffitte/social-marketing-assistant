@@ -26,7 +26,7 @@ function Login() {
             <br /><br />
             <input type="submit" value="Log in"  />
         </form>
-        <a href="#" onClick={dispatch(twtLogin(), token)}>Login with Twitter</a>
+        <button onClick={dispatch(twtLogin(), token)}>Login with Twitter</button>
         </>
     )
 }
