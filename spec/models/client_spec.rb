@@ -9,4 +9,9 @@ RSpec.describe Client, type: :model do
     subject.name = nil
     expect(subject).to_not be_valid
   end
+
+  it 'should have a unique name' do
+    new_client = Client.new(name: "Tom's ")
+    expect(new_client).to_not be_valid
+  end
 end
