@@ -18,6 +18,13 @@ export const clearCurrentUser = () => {
     }
 }
 
+export const redirectUser = (location) => {
+    return {
+        type: "REDIRECT_USER",
+        location
+    }
+}
+
 // Async
 export const signup = (credentials, token) => {
     return dispatch => {
@@ -61,6 +68,9 @@ export const login = (credentials, token) => {
         .then(userData => {
             if(userData.errors){
                 console.log(userData.errors)
+                if(userData.errors == "User doesn't exist"){
+                   dispatch(redirectUser("/signup")) 
+                }
                 //elsif user doesn't exist, redirect to signup form
             } else {
                 dispatch(setCurrentUser(userData.data))
