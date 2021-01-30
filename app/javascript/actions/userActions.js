@@ -129,14 +129,15 @@ export const logOut = (token) => {
 }
 
 export const twtLogin = (token) => {
+    let cb = encodeURIComponent('https://social-marketing-assistant.herokuapp.com/auth/twitter/callback');
     return dispatch => {
         return fetch('https://api.twitter.com/oauth/request_token', {
             credentials: 'include',
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "oauth_callback": process.env.OATH_CB,
-              "oauth_consumer_key": process.env.OATH_KEY
+              "oauth_callback": cb,
+              "oauth_consumer_key": process.env.OAUTH_KEY
             }
           })
           
