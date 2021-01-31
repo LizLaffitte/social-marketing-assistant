@@ -142,12 +142,12 @@ export const twtLogin = (token) => {
           })
           
         .then(response => response.json())
-        .then(userData => {
-            if(userData.errors){
-                console.log(userData.errors)
+        .then(resp => {
+            if(resp.errors){
+                console.log(resp.errors)
                 
             } else {
-                console.log(userData)
+                console.log(resp)
                 // dispatch(setCurrentUser(userData.data))
             }
             
