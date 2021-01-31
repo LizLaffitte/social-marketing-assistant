@@ -16,7 +16,7 @@ export const addPosts = posts => {
 export const createPost = postFormData => {
     return dispatch =>{
         const post = {post: postFormData}
-        return fetch('http://localhost:3000/posts', {
+        return fetch('/posts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

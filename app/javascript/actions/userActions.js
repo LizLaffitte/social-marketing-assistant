@@ -28,7 +28,7 @@ export const redirectUser = (location) => {
 // Async
 export const signup = (credentials, token) => {
     return dispatch => {
-        return fetch('http://localhost:3000/signup', {
+        return fetch('/signup', {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -54,7 +54,7 @@ export const signup = (credentials, token) => {
 
 export const login = (credentials, token) => {
     return dispatch => {
-        return fetch('http://localhost:3000/login', {
+        return fetch('/login', {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -83,7 +83,7 @@ export const login = (credentials, token) => {
 
 export const getCurrentUser = (id) => {
     return dispatch => {
-        return fetch(`http://localhost:3000/users/${id}`, { 
+        return fetch(`/users/${id}`, { 
             credentials: "include",
             method: "GET",
             headers: {
@@ -106,7 +106,7 @@ export const getCurrentUser = (id) => {
 export const logOut = (token) => {
     return dispatch => {
         dispatch(clearCurrentUser())
-        return fetch('http://localhost:3000/logout', {
+        return fetch('/logout', {
         credentials: 'include',
         method: 'DElETE',
         headers: {
