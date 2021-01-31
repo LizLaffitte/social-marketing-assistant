@@ -18,7 +18,8 @@ function Routes() {
     if(loggedInUser && cookies["user"] == "undefined") {
       console.log(loggedInUser.id.to_s)
       setCookie('user', loggedInUser.id, {path: '/'})
-    } else if (!loggedInUser && cookies["user"] != "undefined"){
+    } else if (!loggedInUser && cookies["user"] != "undefined" && cookies["user"] != undefined){
+      console.log(cookies["user"])
       dispatch(getCurrentUser(cookies["user"]))
 
     }
