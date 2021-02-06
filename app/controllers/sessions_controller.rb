@@ -1,13 +1,19 @@
+require 'pry'
 class SessionsController < ApplicationController
     def create
-        user = User.find_by(username: params[:session][:username])
-        if user && user.authenticate(params[:session][:password])
-            session[:user_id] = user.id
-            render json: UserSerializer.new(user)
-        elsif !user
-            render json: {errors: "User doesn't exist"}
-        else 
-            render json: {errors: "Invalid credentials"}
+        # binding.pry
+        if params[:username]
+            user = User.find_by(username: params[:username])
+            if user && user.authenticate(params[:password])
+                session[:user_id] = user.id
+                render json: UserSerializer.new(user)
+            elsif !user
+                render json: {errors: "User doesn't exist"}
+            else 
+                render json: {errors: "Invalid credentials"}
+            end
+        else
+
         end
     end
 
@@ -18,5 +24,4 @@ class SessionsController < ApplicationController
 
     def index
     end
-    
 end
