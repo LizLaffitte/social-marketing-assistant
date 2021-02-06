@@ -10,18 +10,11 @@ class SocialController < ApplicationController
             'oauth_timestamp' => Time.now.to_i.to_s
         }
         baseUrl = 'https://api.twitter.com/oauth/request_token'
-        sig_generator("POST", baseUrl, oauth_params)
-        
-        req_token = HTTParty.post(baseURL,
-      :headers => { 
-            'Content-Type' => 'application/json',
-            'oauth_callback' =>  cb,
-            'oauth_consumer_key' => ENV['KEY'],
-            'oauth_nonce' => nonce
-            'oauth_signature' => ,
-            'oauth_signature_method' => sig_method,
-            'oauth_version' => oauth_v
-            }
+        signature = sig_generator("POST", baseUrl, oauth_params)
+        oauth_params['Content-Type'] ='application/json'
+        oauth_params['oauth_signature'] = signature
+        req_token = HTTParty.post(baseUrl,
+      :headers => oauth_params
       )
       render json: req_token.body
     end
