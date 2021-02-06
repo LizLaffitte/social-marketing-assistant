@@ -13,7 +13,10 @@ function Login() {
         e.preventDefault()
         dispatch(login({username, password}, token))       
     }
-
+    const handleTwitter = (e) => {
+        e.preventDefault()
+        dispatch(twtLogin(), token)
+    }
     const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
         <>
@@ -26,7 +29,7 @@ function Login() {
             <br /><br />
             <input type="submit" value="Log in"  />
         </form>
-        <button onClick={dispatch(twtLogin(), token)}>Login with Twitter</button>
+        <a href="/auth/twitter">Login with Twitter</a>
         </>
     )
 }
