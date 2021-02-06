@@ -82,6 +82,7 @@ export const login = (credentials, token) => {
 }
 
 export const getCurrentUser = (id) => {
+    console.log("id")
     return dispatch => {
         return fetch(`/users/${id}`, { 
             credentials: "include",
@@ -129,15 +130,13 @@ export const logOut = (token) => {
 }
 
 export const twtLogin = (token) => {
-    let cb = encodeURIComponent('https://social-marketing-assistant.herokuapp.com/auth/twitter/callback');
     return dispatch => {
-        return fetch('https://api.twitter.com/oauth/request_token', {
+        return fetch(`http://127.0.0.1:3000/auth/twitter/callback`, {
             credentials: 'include',
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "oauth_callback": cb,
-              "oauth_consumer_key": process.env.OAUTH_KEY
+              "X-CSRF-Token": token
             }
           })
           
