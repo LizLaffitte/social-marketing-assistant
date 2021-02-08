@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   get '/auth/twitter', to: "social#create"
+  get '/auth/:provider/callback', to: "social#index"
   post '/auth/:provider/callback', to: 'sessions#create'
   resources :users, only: [:show]
   
