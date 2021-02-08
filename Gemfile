@@ -26,6 +26,7 @@ gem 'jsonapi-serializer'
 # gem 'omniauth-twitter'
 # gem 'omniauth'
 gem 'httparty'
+gem 'oauth'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
