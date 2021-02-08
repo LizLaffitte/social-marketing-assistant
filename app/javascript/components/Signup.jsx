@@ -24,7 +24,7 @@ return(
         <label>Email Address: </label><br />
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} name="email" /><br /><br />
         <label>Password: </label> <br />
-        <input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)} />
+        <input type="password"  name="password" onChange={e => setPassword(e.target.value)} />
         <br /><br />
         <input type="submit" value="Sign up"  />
     </form>
