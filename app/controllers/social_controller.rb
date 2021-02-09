@@ -20,17 +20,6 @@ class SocialController < ApplicationController
         end
     end
 
-    def index
-        oauth_token = params["oauth_token"]
-        oauth_verifier = params["oauth_verifier"]
-        baseUrl = 'https://api.twitter.com/oauth/access_token'
-        response = HTTParty.post(baseUrl + "?oauth_token=#{oauth_token}&oauth_verifier=#{oauth_verifier}" )
-        @access_token = response.split("&")[0]
-        @access_token.slice!("oauth_token=")
-        @access_secret = response.split("&")[1]
-        @access_secret.slice!("oauth_token_secret=")
-        redirect_to "/"
-    end
 
     def post_tweet
     end
