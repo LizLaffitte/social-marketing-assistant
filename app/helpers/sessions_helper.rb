@@ -18,25 +18,9 @@ module SessionsHelper
             redirect_to "/"
         end
     end
-    def get_user(username)
-        # ckey = ENV['KEY']
-        # csecret = ENV['SECRET']
-        # consumer = OAuth::Consumer.new(ckey,csecret,
-        #     :site => 'https://api.twitter.com',
-        #     :authorize_path => '/oauth/authenticate',
-        #     :debug_output => true)
-        # request_token = consumer.get_request_token()
-        # token = request_token.token
-        # token_secret = request_token.secret
-        # confirmed = request_token.params["oauth_callback_confirmed"]
-        # if confirmed === "true"
-        #     redirect_to "https://api.twitter.com/oauth/authorize?oauth_token=#{token}"
-        # else
-        #     redirect_to "/"
-        # end
-        
 
-        
+    
+    def get_user(username)
             baseUrl = 'https://api.twitter.com/1.1/users/show.json'
             
             header = {'authorization' => 'Bearer ' + ENV['BEARER']}
