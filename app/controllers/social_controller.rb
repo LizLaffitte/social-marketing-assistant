@@ -1,13 +1,13 @@
 require 'pry'
 require 'oauth'
 class SocialController < ApplicationController
-    def create
+    def req_token
         ckey = ENV['KEY']
         csecret = ENV['SECRET']
         consumer = OAuth::Consumer.new(ckey,csecret,
             :site => 'https://api.twitter.com',
             :authorize_path => '/oauth/authenticate',
-            :debug_output => true)
+            :debug_output => false)
         callback_url = "http://127.0.0.1:3000/auth/twitter/callback"
         request_token = consumer.get_request_token(:oauth_callback => callback_url)
         token = request_token.token
@@ -21,12 +21,6 @@ class SocialController < ApplicationController
     end
 
 
-    def post_tweet
-    end
-
-
     private
 
-
-    
 end
