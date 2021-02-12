@@ -13,10 +13,6 @@ function Login() {
         e.preventDefault()
         dispatch(login({username, password}, token))       
     }
-    const handleTwitter = (e) => {
-        e.preventDefault()
-        dispatch(twtLogin(), token)
-    }
     const token = document.querySelector('meta[name="csrf-token"]').content;
     return(
         <>
