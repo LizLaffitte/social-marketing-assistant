@@ -128,29 +128,3 @@ export const logOut = (token) => {
         .catch(console.log())
     }
 }
-
-export const twtLogin = (token) => {
-    return dispatch => {
-        return fetch(`http://127.0.0.1:3000/auth/twitter/callback`, {
-            credentials: 'include',
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRF-Token": token
-            }
-          })
-          
-        .then(response => response.json())
-        .then(resp => {
-            if(resp.errors){
-                console.log(resp.errors)
-                
-            } else {
-                console.log(resp)
-                // dispatch(setCurrentUser(userData.data))
-            }
-            
-        })
-        .catch(console.log())
-    }
-}
