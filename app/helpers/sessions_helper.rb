@@ -20,12 +20,5 @@ module SessionsHelper
     end
 
     
-    def get_user(username)
-            baseUrl = 'https://api.twitter.com/1.1/users/show.json'
-            
-            header = {'authorization' => 'Bearer ' + ENV['BEARER']}
-            response = HTTParty.get(baseUrl + "?screen_name=#{username}", :headers => header)
-            
-            return response
-    end
+
 end
