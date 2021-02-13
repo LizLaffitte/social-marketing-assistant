@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 require 'oauth'
 class SocialController < ApplicationController
     def req_token
@@ -30,7 +30,7 @@ class SocialController < ApplicationController
         session[:user_id] = response.split("&")[2].split("=")[1]
         session[:screenname] = response.split("&")[3].split("=")[1]
         response = get_user(screenname)
-        session[:user] = response
+        # session[:user] = response
         render json: response
         # redirect_to :controller => 'sessions', :action => 'create'
     end
